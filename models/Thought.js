@@ -5,11 +5,14 @@ const thoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
-            required: true
+            required: true,
+            maxLength: 280,
+            minLength: 1
         },
         createdAt: {
             type: Date,
             default: Date.now()
+            //needs getter method to format the timestamp on query
         },
         username: {
             type: String,
