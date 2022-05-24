@@ -11,8 +11,8 @@ const thoughtSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: Date.now()
-            //needs getter method to format the timestamp on query
+            default: Date.now(),
+            get: timestamp
         },
         username: {
             type: String,
@@ -26,6 +26,10 @@ const thoughtSchema = new Schema(
         ]
     }
 );
+
+function timestamp(createdAt) {
+    return createdAt.toLocaleDateString();
+}
 
 const Thought = model('thought', thoughtSchema);
 

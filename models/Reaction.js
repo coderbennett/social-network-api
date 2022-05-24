@@ -17,11 +17,15 @@ const reactionSchema = new Schema(
         },
         createdAt: {
             type: Date,
-            default: Date.now()
-            //needs getter method to format the timestamp on query
+            default: Date.now(),
+            get: timestamp
         }
     }
 );
+
+function timestamp(createdAt) {
+    return createdAt.toLocaleDateString();
+}
 
 const Reaction = model('reaction', reactionSchema);
 
